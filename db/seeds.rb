@@ -7,4 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 ['user', 'admin', 'projectleader'].each do |role|
   Role.find_or_create_by({name: role})
-endAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+end
+User.create!(:email => 'admin@focus.com',:first_name => 'Admin', :last_name => 'Admin', :password => '123456', :password_confirmation => '123456')
+AdminUser.create!(:email => 'admin@focus.com', :password => '123456', :password_confirmation => '123456')
