@@ -1,0 +1,23 @@
+// Place all the styles related to the Chats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chatcontainer {
+  background-color: white;
+  height: 80%;
+}
+
+.scrollable-chatview {
+  height:500px;
+  overflow-y: scroll;
+  border:1px solid red;
+}
+
+.messagelist li{
+  display: flex;
+  margin: 5px;
+}
+
+.timerbuttons{
+  display: inline-block;
+}

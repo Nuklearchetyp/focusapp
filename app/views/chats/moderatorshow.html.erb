@@ -1,0 +1,78 @@
+<h1>Modd</h1>
+<% content_for :title, @chat.project.title  %>
+<p>
+  <strong>Deadline:</strong>
+  <%= @chat.deadline %>
+</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 chatcontainer">
+      <h3>Topic Goes Here</h3>
+      <hr>
+      <script type="text/javascript">
+        var currentdate = new Date(); 
+        var endTime = "Last Sync: " + currentdate.getDate() + "/"
+        + (currentdate.getMonth()+1)  + "/" 
+        + currentdate.getFullYear() + " @ "  
+        + (currentdate.getHours()+1) + ":"  
+        + currentdate.getMinutes() + ":" 
+        + currentdate.getSeconds();
+        $('div#clock').countdown(endTime.toString());
+        $('#clock').countdown('2020/10/10').on('update.countdown', function(event) {
+        var $this = $(this).html(event.strftime('' + '<span>%H</span> Hours ' + '<span>%M</span> Minutes ' + '<span>%S</span> Seconds'));
+        });
+      </script>
+      <div id="clock"></div>
+      <div class="scrollable-chatview">
+        <div class="row-fluid">
+          <div id="messages" data-chat-id="<%= @chat.id %>">
+            <%= render @chat.messages %>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="chat-input">
+        <div class="row">
+          <%= form_for @message, url: '#' do |f| %>
+          <%= hidden_field_tag 'chat_id', @chat.id %>
+          <div class="col-md-10">
+            <%= f.text_area :body, class: 'form-control', placeholder: "From 2 to 1000 characters" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit "Send", class: 'btn btn-primary btn-lg' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="topics" data-chat-id="<%= @chat.id %>">
+        <%= render @chat.topics %>
+    </div>
+    <div class="topics-panel col-md-4">
+      <%= form_for @topic, url: '#' do |t| %>
+        <%= hidden_field_tag 'chat_id', @chat.id %>
+        <div class="form-group">
+            <p>New Topic</p>
+            <%= t.text_field :title %><br>
+            <%= t.submit %>
+        </div>
+      <% end %>
+      <div class="result-container">
+        <div class="form-group">
+          <label for="comment">Result:</label>
+          <textarea class="form-control" rows="10" id="comment"></textarea>
+          <button type="button" class="btn btn-success saveresult">Save Result</button>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-success starttimerbutton" onclick="$('div#clock').countdown('start');">Start Timer</button>
+        </div>
+        <div class="col-md-6">
+          <button type="button" class="btn btn-danger pausetimerbutton" onclick="$('div#clock').countdown('pause');">Pause Timer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

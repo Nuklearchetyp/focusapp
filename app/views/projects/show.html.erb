@@ -1,0 +1,12 @@
+<% content_for :title, @project.title %>
+
+<h1><%= @project.title %></h1>
+<h3><%= @project.information %></h3>
+<h5> Mod: <%= @project.moderator.email %></h5>
+<h5>Participants</h5>
+<% @project.users.each do |u| %>
+  <%= u.first_name %>
+  <%= u.last_name %><br>
+<% end %>
+<h6> Creator: <%= @project.projectleader.email %></h6>
+<%= link_to "Open Chat", project_chat_path(:id => @project.chat.id, :project_id => @project.id) %>

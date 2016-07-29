@@ -1,0 +1,60 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.projectbutton {
+  background-color: #c0dfd9;
+    color: #3b3a36;
+    border-color: #3b3a36;
+
+    &:hover {
+      background-color: #3b3a36;
+      color: #c0dfd9;
+    }
+    &:focus {
+      background-color: #3b3a36;
+      color: #c0dfd9;
+    }
+}
+
+.dropdown-menu{
+  background-color: #3b3a36;
+  li *{
+    background-color: #3b3a36;
+    color: #c0dfd9;
+  }
+  li:hover{
+    background-color: #c0dfd9;
+    color:#3b3a36;
+  }
+}
+
+/* Buttons */
+.actions input {
+  background-color: #3b3a36;
+  color: #c0dfd9;
+  border: 1px solid transparent;
+  border-color: #c0dfd9;
+  border-radius: 5px;
+}
+
+.button_to input {
+  background-color: #3b3a36;
+  color: #c0dfd9;
+  border: 1px solid transparent;
+  border-color: #c0dfd9;
+  border-radius: 5px;
+}
+
+.userchecklist {
+  input[type="checkbox"]{
+    display: inline-block;
+    width: 10%;
+  }
+  
+  input[type="checkbox"] + label{
+    display: inline-block;
+    margin-left: 10%;
+    width: 80%;
+  }
+}

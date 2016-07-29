@@ -1,0 +1,36 @@
+<h1>Participanti</h1>
+<% content_for :title, @chat.project.title  %>
+<p>
+  <strong>Deadline:</strong>
+  <%= @chat.deadline %>
+</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 chatcontainer">
+      <h3>Topic Goes Here</h3>
+      <hr>
+      <div class="scrollable-chatview">
+        <div class="row-fluid">
+          <div id="messages" data-chat-id="<%= @chat.id %>">
+            <%= render @chat.messages %>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="chat-input">
+        <div class="row">
+          <%= form_for @message, url: '#' do |f| %>
+          <%= hidden_field_tag 'chat_id', @chat.id %>
+          <div class="col-md-10">
+            <%= f.text_area :body, class: 'form-control', placeholder: "From 2 to 1000 characters" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit "Send", class: 'btn btn-primary btn-lg' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
