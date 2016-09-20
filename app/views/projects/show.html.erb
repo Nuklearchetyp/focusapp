@@ -12,7 +12,10 @@
 		<hr>
 		<h5>Moderator: <%= @project.moderator.email %></h5>
 		<hr>
-		<%= link_to "Open Chat", project_chat_path(:id => @project.chat.id, :project_id => @project.id) %>
+		<% if @project.users.include?(current_user) || @project.projectleader == current_user || @project.moderator == current_user %>
+			<%= link_to "Open Chat", project_chat_path(:id => @project.chat.id, :project_id => @project.id) %>
+		<% end %>
+
 	</div>
 	<div class="col-md-4">
 		<h5>Participants: </h5>
