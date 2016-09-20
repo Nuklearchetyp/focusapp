@@ -1,3 +1,4 @@
+<% content_for :title, @project.title %>
 <div class="row">
 	<div class="col-md-4">
 		<h1><%= @project.title %></h1>
@@ -5,7 +6,7 @@
 		<h3><%= @project.information %></h3>
 	</div>
 	<div class="col-md-4">
-		<h3>Discussion starts at <%= @project.chat.deadline.to_time.strftime('%A, %d %b %Y %l:%M %p')%> Central European Time</h3>
+		<h3>Discussion started <%= @project.chat.deadline.to_time.strftime('%A, %d %b %Y')%> Central European Time</h3>
 		<hr>
 		<h4> ProjectLeader: <%= @project.projectleader.email %></h6>
 		<hr>
