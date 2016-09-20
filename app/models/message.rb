@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
-  belongs_to :user
-  belongs_to :chat
+  belongs_to :user, optional: true
+  belongs_to :chat, optional: true
   
   validates :body, presence: true, length: {minimum: 2, maximum: 1000}
   

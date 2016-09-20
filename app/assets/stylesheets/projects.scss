@@ -8,13 +8,24 @@
     border-color: #3b3a36;
 
     &:hover {
-      background-color: #3b3a36;
       color: #c0dfd9;
     }
     &:focus {
       background-color: #3b3a36;
       color: #c0dfd9;
     }
+}
+
+.col-md-4 {
+  -ms-word-break: break-all;
+  word-break: break-all;
+
+  /* Non standard for webkit */
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 .dropdown-menu{
@@ -46,6 +57,14 @@
   border-radius: 5px;
 }
 
+.searchbutton {
+  background-color: #3b3a36;
+  color: #c0dfd9;
+  border: 1px solid transparent;
+  border-color: #c0dfd9;
+  border-radius: 5px;
+}
+
 .userchecklist {
   input[type="checkbox"]{
     display: inline-block;
@@ -57,4 +76,20 @@
     margin-left: 10%;
     width: 80%;
   }
+
+  .new_project {
+    label {
+      font-size: 1.17em;
+    }
+  }
+}
+carousel-content {
+    display:flex;
+    align-items:center;
+}
+
+#text-carousel {
+  width: 100%;
+  height: auto;
+  padding: 50px;
 }

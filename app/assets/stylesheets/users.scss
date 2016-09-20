@@ -33,3 +33,37 @@
   border-color: #c0dfd9;
   border-radius: 5px;
 }
+
+.useractioncontainer {
+  margin-left: 10px;
+}
+
+.useractionlist {
+  list-style: none;
+  font-size: 1.30em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.useractionlist li {
+  display:block;
+  text-decoration:none;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.useractionlist li a {
+  color: #3b3a36;
+  text-decoration: none;
+}
+
+.useractionlist li a:hover {
+  background-color: #3b3a36;
+  color: #c0dfd9;
+  text-decoration:none;
+}
+
+/* User.indes.hmtl */
+.userlist {
+  list-style: none;
+}

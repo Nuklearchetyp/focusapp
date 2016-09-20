@@ -2,15 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.projecttitle {
+  margin-top: 15px;
+  padding:15px;
+  text-align: center;
+}
+
 .chatcontainer {
   background-color: white;
   height: 80%;
+  background-image: linear-gradient(to top, #ffffff,#c0dfd9);
+  background-repeat: no-repeat;
+  box-shadow: 1px 2px 4px rgba(0,0,0, .2);
 }
 
 .scrollable-chatview {
-  height:500px;
+  display: block;
+  height:550px;
   overflow-y: scroll;
-  border:1px solid red;
 }
 
 .messagelist li{
@@ -20,4 +29,32 @@
 
 .timerbuttons{
   display: inline-block;
+}
+
+.resultinput {
+  height: 230px;
+}
+
+
+#topicpopup {
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    vertical-align:middle;
+    background-color: cornflowerblue;
+    color: white;
+    display: none;
+    padding-top: 8px;
+    position: absolute;
+}
+
+.card {
+  display: flex;
+}
+
+.message-content {
+   width: 640px;
+   overflow: auto;
+   line-height: 1.3em;
+   word-wrap: break-word;
 }

@@ -11,6 +11,10 @@ class ChatsController < ApplicationController
     @chat = Chat.includes(:messages).find_by(id: params[:id])
     @message = Message.new
     @topic = Topic.new
+    @topic_result = TopicResult.new
+    unless @chat.currenttopic_id.nil?
+      @currenttopic = Topic.find(@chat.currenttopic_id)
+    end  
     if @chat.project.moderator.id == current_user.id
       render "moderatorshow"
     elsif @chat.project.users.include?(current_user)
@@ -65,6 +69,13 @@ class ChatsController < ApplicationController
     end
   end
 
+  def nexttopic
+    @chat = Chat.find(params[:chat_id])
+    @chat.update_attribute(:currenttopic_id, params[:chat][:currenttopic_id])
+    @currenttopic = Topic.find_by_id(params[:chat][:currenttopic_id])
+    redirect_to project_chat_path(fallback_location: project_chat_path)
+  end  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chat
@@ -73,6 +84,6 @@ class ChatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chat_params
-      params.require(:chat).permit(:deadline,  topic_attributes: [:title])
+      params.require(:chat).permit(:deadline, :currenttopic_id)
     end
 end

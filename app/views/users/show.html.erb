@@ -1,26 +1,57 @@
 <% content_for :title, "Home" %>
 
-<% if current_user.id == @user.id %>
-	<h1> Welcome <%= current_user.first_name %>!</h1>
-	<div class="row">
-		<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 useractioncontainer">
-			<h3>Actions</h3>
-			<ul class="useractionlist">
-				<% case current_user.role.name
-					when  "admin" %>
-						<%= render 'shared/useractions/adminactionbar' %>
-					<% when  "projectleader" %>
-						<%= render 'shared/useractions/projectleaderactionbar' %>
-					<% when  "user" %>	
-						<%= render 'shared/useractions/useractionbar' %>
-					<% else %>
-						<h1> NO USER ROLE - CONTACT ADMIN</h1>
-				<% end %>	
-			</ul>	
+<% if current_user.id != @user.id %>
+	<%= render 'shared/useractions/profile' %>
+<% else %>
+	<div class="container">
+		<h1> Welcome <%= current_user.first_name %>!</h1>
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 useractioncontainer">
+				<h3>Navigation</h3>
+				<ul class="useractionlist">
+					<% case current_user.role.name
+						when  "administrator" %>
+							<%= render 'shared/useractions/adminactionbar' %>
+						<% when  "projectleader" %>
+							<%= render 'shared/useractions/projectleaderactionbar' %>
+						<% when  "user" %>	
+							<%= render 'shared/useractions/useractionbar' %>
+						<% else %>
+							<h1> NO USER ROLE - CONTACT ADMIN</h1>
+					<% end %>	
+				</ul>	
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-7 col-lg-7 userprojectlist">
+			<h3>Your Projects</h3>
+				<table class="table table-hover table-condensed">
+					<thead>
+						<th>Project Title</th>
+				        <th>Status</th>
+				        <th>Projectpage</th>
+					</thead>
+					<tbody>
+						<% if @user_projects.present? %>
+							<% @user_projects.each do |project| %>
+					            <tr>
+					    			<td>
+					    				<%= project.title %>
+					    			</td>
+					    			<td>
+					    				<% if project.completed %>
+					    					Completed
+					    				<% else %>
+					    					Running
+					    				<% end %>
+					    			</td>
+					    			<td>
+					    				<%= button_to "View", project_path(:id => project.id), :method => :get %>
+					    			</td>
+					    		</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
-<% else %>
-	<h2>Profile Page</h2>
-	<p> Email: <%= @user.email %></p>
-	<p> Role: <%= @user.role.name %></p>
 <% end %>

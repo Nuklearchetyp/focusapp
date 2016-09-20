@@ -4,14 +4,21 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = Topic.new
-    respond_with(@topic)
+    @chat = Chat.find(params[:chat_id])
+    @topic = @chat.build
   end
 
   def create
-    @topic = Topic.create(topic_params)
-    @topic.save
-    respond_with(@topic)
+    @chat = Chat.find(params[:chat_id])
+    @topic= Topic.create(topic_params)
+    @topic.chat_id = @chat.id
+    respond_to do |format|
+      if @topic.save
+        format.html { redirect_to :back, notice: 'Chat was successfully created.' }
+      else
+        format.html {  redirect_to :back }
+      end
+    end
   end
 
   def edit
@@ -35,6 +42,6 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:title)
+      params.require(:topic).permit(:title, :information)
     end
 end

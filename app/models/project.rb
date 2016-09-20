@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
-  belongs_to :projectleader, :class_name => "User"
-  belongs_to :moderator, :class_name => "User"
+  belongs_to :projectleader, :class_name => "User", optional: true
+  belongs_to :moderator, :class_name => "User", optional: true
   has_one :chat, :class_name => "Chat", inverse_of: :project 
   has_and_belongs_to_many  :users
   

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'topic_results/new'
+
+  get 'topic_results/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   mount ActionCable.server => '/cable'
@@ -16,12 +20,15 @@ Rails.application.routes.draw do
   
   #Projects
   resources :projects do
+    patch :complete
+    get :data
     resources :chats , :only => [:show] do
+      member do
+        patch :nexttopic
+      end
       resources :messages, :only => [:show]
       resources :topics
+      resources :topic_results, :path => "results"
     end
   end 
-    
-  get 'users/profile/:id', to: 'users#profile'
-  
 end

@@ -15,8 +15,18 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    if @project.completed
+      redirect_to project_data_path(:project_id => params[:id])
+    end  
     rescue ActiveRecord::RecordNotFound
         redirect_to :action => 'index'
+  end
+
+  def data
+    @project = Project.find(params[:project_id])
+    if !(@project.projectleader_id == current_user.id || @project.moderator_id == current_user.id)
+      redirect_to projects_path
+    end  
   end
 
   def new
@@ -29,6 +39,7 @@ class ProjectsController < ApplicationController
     @project = Project.create(project_params)
     @project.projectleader = current_user
     @project.chat_id = @project.chat.id
+    @project.completed = false
     @project.save
     respond_with(@project)
   end
@@ -49,6 +60,12 @@ class ProjectsController < ApplicationController
     @chat.destroy
     @project.destroy
     redirect_to :action => 'index'
+  end
+
+  def complete
+    @project = Project.find(params[:project_id])
+    @project.update_attribute(:completed,1)
+    redirect_to :action => 'data'
   end
 
   private

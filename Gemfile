@@ -27,7 +27,7 @@ gem 'redis', '~> 3.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-#ab hier meine
+#Non-Default gems
 gem 'bootstrap', '~> 4.0.0.alpha3'
 #icons
 gem 'font-awesome-rails'

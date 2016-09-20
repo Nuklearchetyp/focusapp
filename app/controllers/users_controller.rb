@@ -3,8 +3,13 @@ class UsersController < ApplicationController
     
   def show
     @user = User.find(params[:id])
+    @user_projects = @user.projects
+    if @user.id != current_user.id
+      redirect_to users_path
+     #redirect_to :action => 'profile'
+    end  
     rescue ActiveRecord::RecordNotFound
-      redirect_to :action => 'index'
+      redirect_to users_path
   end
   
   def index

@@ -1,37 +1,46 @@
 <% content_for :title, "New Project" %>
 <h1> Create Project <h1>
+<h2>Important: When adding Participants, make sure to add the moderator and the projectleader as Participants too! </h2>
 <%= form_for(@project) do |f| %>
 	<% if @project.errors.any? %>
     	<% @project.errors.full_messages.each do |message| %>
       		<li><%= message %></li>
     	<% end %>
   	<% end %>
-	<div class="field">
-		<%= f.label :title %><br>
-		<%= f.text_field :title, autofocus: true, required: true %>
-	</div>
-	<div class="field">
-		<%= f.label :information %><br>
-		<%= f.text_area :information, required: true %>
-	</div>
-	<div class="actions">
-		<%= f.label :moderator %><br>
-		<%= f.collection_select :moderator_id, User.order(:email),:id,:email, required: true %>
-	</div>
-	<%= f.hidden_field :projectleader_id, :value => current_user.id %>
+  	<div class="row">
+  		<div class="col-md-4">
+  			<div class="field">
+				<%= f.label :title %><br>
+				<%= f.text_field :title, autofocus: true, required: true %>
+			</div>
+			<div class="field">
+				<%= f.label :information %><br>
+				<%= f.text_area :information, required: true %>
+			</div>
+  		</div>
+  		<div class="col-md-4">
+  			<div class="actions">
+				<%= f.label :moderator %><br>
+				<%= f.collection_select :moderator_id, User.order(:email),:id,:email, required: true %>
+			</div>
+			<%= f.hidden_field :projectleader_id, :value => current_user.id %>
+			
+			<%= f.fields_for :chat do |ff| %>
+				<div class="actions">
+					<%= ff.label :deadline, 'Chose Date for Focus Group Interview' %><br>
+					<%= ff.datetime_select :deadline %>
+				</div>
+			<% end %>
+  		</div>
+  		<div class="col-md-4">
+  			<div class="actions userchecklist">
+				<%= f.label :user_ids, 'Select Participants' %><br>
+				<%= f.collection_check_boxes :user_ids, User.order(:last_name), :id, :email, {}, {multiple: true} %>
+			</div>	
+  		</div>
+  	</div>
 	
-	<%= f.fields_for :chat do |ff| %>
-		<div class="actions">
-			<%= ff.label :deadline, 'Chose Date for Focus Group Interview' %><br>
-			<%= ff.datetime_select :deadline %>
-		</div>
-	<% end %>
-	
-	<div class="actions userchecklist">
-		<%= f.label :user_ids, 'Select Participants' %><br>
-		<%= f.collection_check_boxes :user_ids, User.order(:last_name), :id, :email, {}, {multiple: true} %>
-	</div>	
-	<div class="actions">
+	<div class="m-x-auto actions createbutton">
 		<%= f.submit %>
 	</div>
 <% end %>

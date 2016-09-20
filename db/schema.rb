@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728141719) do
+ActiveRecord::Schema.define(version: 20160918000152) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -45,9 +45,11 @@ ActiveRecord::Schema.define(version: 20160728141719) do
 
   create_table "chats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deadline"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "project_id"
+    t.integer  "currenttopic_id"
+    t.index ["currenttopic_id"], name: "index_chats_on_currenttopic_id", using: :btree
     t.index ["project_id"], name: "index_chats_on_project_id", using: :btree
   end
 
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160728141719) do
     t.integer  "moderator_id"
     t.integer  "projectleader_id"
     t.integer  "chat_id"
+    t.boolean  "completed"
     t.index ["chat_id"], name: "index_projects_on_chat_id", using: :btree
     t.index ["moderator_id"], name: "index_projects_on_moderator_id", using: :btree
     t.index ["projectleader_id"], name: "index_projects_on_projectleader_id", using: :btree
