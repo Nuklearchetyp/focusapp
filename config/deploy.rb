@@ -10,6 +10,16 @@ set :repo_url, 'git@github.com:nuklearchetyp/focusapp.git'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/deploy/focusapp'
 
+#Tell cap your own private keys for git and use agent forwarding with this command.
+ssh_options[:forward_agent] = true
+
+# Must be set for the password prompt from git to work
+default_run_options[:pty] = true  
+
+set :repository, "git@github.com:nuklearchetyp/focusapp.git"  # Your clone URL
+set :scm, "git"
+set :user, "deployer"  # The server's user for deploys
+
 # Default value for :scm is :git
 # set :scm, :git
 
