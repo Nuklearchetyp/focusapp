@@ -40,8 +40,13 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'ransack',             github: 'activerecord-hackery/ransack'
 gem 'draper',              '> 3.x'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :development do
+	# Use Capistrano for deployment
+	gem 'capistrano', '~> 3.6.1'
+	gem 'capistrano-rails', '~> 1.1.8'
+	gem 'capistrano-rbenv', '~> 2.0.4'
+end
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
