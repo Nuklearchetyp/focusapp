@@ -11,10 +11,10 @@ set :repo_url, 'git@github.com:nuklearchetyp/focusapp.git'
 set :deploy_to, '/home/deploy/focusapp'
 
 #Tell cap your own private keys for git and use agent forwarding with this command.
-ssh_options[:forward_agent] = true
+#ssh_options[:forward_agent] = true
 
 # Must be set for the password prompt from git to work
-default_run_options[:pty] = true  
+#default_run_options[:pty] = true  
 
 set :repository, "git@github.com:nuklearchetyp/focusapp.git"  # Your clone URL
 set :scm, "git"
