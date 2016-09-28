@@ -26,6 +26,8 @@ test:
 
 production:
   <<: *default
-  database: focusapp_production
-  username: focusapp
-  password: <%= ENV['FOCUSAPP_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  database: focusapp
+  username: focusadmin
+  password: focusgroupadmin
+  host: localhost
