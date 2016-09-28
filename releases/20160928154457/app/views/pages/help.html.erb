@@ -1,0 +1,47 @@
+<% content_for :title, "Help" %>
+<div class="container">
+	<h1>HELP</h1>
+	<div class="row-fluid">
+	    <div class="col-md-12">
+		    <h4>Create Account</h4>
+			<p>
+			You can Register and create a new Account here: <%= link_to  "Create Account" , new_user_registration_path %>
+			</p>
+			<h4>Cancel Account</h4>
+			<p>
+			You can cancel your Account in your Profile Settings: <%= link_to  "Profile Settings" , edit_user_registration_path %>
+			</p>
+			<h4>Become Projectleader</h4>
+			<p>
+			You have to <%= link_to  "Contact" , contact_path %> an Administrator to be promoted to a Projectleader 
+			</p>
+			<h4>Crate a new Focusgroup</h4>
+			<p>
+			You have to be a Projectleader to have the permission to create a new Project.
+			Once you are promoted, you are offered the option to create a Focusgroup on your Landingepage.
+			Click on "Create Project" and fill in the required Informations. Dont forget to add yourself and the moderator additional to the participant list!
+			</p>
+			<h4>Organize Focusgroup</h4>
+			<p>
+			The Moderator has to visit the Chatpage of a Project before the Discussion starts.
+			He has to create Topics to copy the guideline of the discussion to the Application. 
+			During the Discussion, he has to update the current discussed Topic, after one Topic is completed.
+			After updating the Topic, tell the Users to refresh their Chatpages.
+			</p>
+			<h4>Complete Focusgroup</h4>
+			<p>
+			To end a Focusgroup, the Moderator has to get to the Projectpage and press the "Finish Project Button"
+			</p>
+			<h4>Review Collected Data</h4>
+			<p>
+			Cou can review the collected Data of a Focusgroup after the Project was finished by the Moderator. 
+			Only the Moderator and the Projectleader of a Project can be review the collected Data.
+			</p>
+			<h4>Chat Bugs</h4>
+			<p>
+			If you cant send or receive Messages in the Chat, do not refresh the Page. Click on Home and navigate back to the Chatpage.
+			</p>
+
+	</div>
+</div>
+

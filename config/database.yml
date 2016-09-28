@@ -31,4 +31,4 @@ production:
   username: focusadmin
   password: focusgroupadmin
   host: localhost
-  socket: /var/run/mysqld/mysqld.sock
+#  socket: /var/run/mysqld/mysqld.sock

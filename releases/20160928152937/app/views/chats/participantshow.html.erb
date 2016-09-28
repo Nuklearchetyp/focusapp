@@ -1,0 +1,53 @@
+<% content_for :title, @project.title  %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 chatcontainer">
+      <div class="row">
+          <div class="col-md-6">
+            <% if @currenttopic %>
+              <h3><%= @currenttopic.title %> </h3>
+              <h6><%= @currenttopic.information %> </h3>
+            <% else %>
+              <h3>No Topic Selected </h3>
+              <h6>Moderator has to Set a Topic </h3>
+            <% end %>  
+          </div>
+          <div class="col-md-6">
+            <script type="text/javascript">
+              var currentdate = new Date(); 
+              var endTime = "Last Sync: " + currentdate.getDate() + "/"
+              + (currentdate.getMonth()+1)  + "/" 
+              + currentdate.getFullYear() + " @ "  
+              + (currentdate.getHours()+1) + ":"  
+              + currentdate.getMinutes() + ":" 
+              + currentdate.getSeconds();
+              $('div#clock').countdown(endTime.toString());
+              $('#clock').countdown('2020/10/10').on('update.countdown', function(event) {
+              var $this = $(this).html(event.strftime('' + '<span>%H</span> Hours ' + '<span>%M</span> Minutes ' + '<span>%S</span> Seconds'));
+              });
+            </script>
+            <div id="clock"></div>
+          </div>
+        </div>      
+      <div class="row-fluid">
+        <div class="scrollable-chatview" id="messages" data-chat-id="<%= @chat.id %>">
+          <%= render @chat.messages %>
+        </div>
+      </div>
+      <hr>
+      <div class="chat-input">
+        <div class="row">
+          <%= form_for @message, url: '#' do |f| %>
+          <%= hidden_field_tag 'chat_id', @chat.id %>
+          <div class="col-md-10">
+            <%= f.text_area :body, class: 'form-control', placeholder: "From 2 to 1000 characters" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit "Send", class: 'btn btn-primary btn-lg' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

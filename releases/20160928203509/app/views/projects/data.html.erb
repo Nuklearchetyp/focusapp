@@ -1,0 +1,55 @@
+<% content_for :title, @project.title %>
+<div class="row">
+	<div class="col-md-4">
+		<h1><%= @project.title %></h1>
+		<hr>
+		<h3><%= @project.information %></h3>
+	</div>
+	<div class="col-md-4">
+		<h3>Discussion started <%= @project.chat.deadline.to_time.strftime('%A, %d %b %Y')%> Central European Time</h3>
+		<hr>
+		<h4> ProjectLeader: <%= @project.projectleader.email %></h6>
+		<hr>
+		<h5>Moderator: <%= @project.moderator.email %></h5>
+		<hr>
+	</div>
+	<div class="col-md-4">
+		<h5>Participants: </h5>
+		<% @project.users.each do |u| %>
+		  <%= u.first_name %>
+		  <%= u.last_name %><br>
+		<% end %>	
+	</div>
+</div>
+<hr>
+<h1>Results</h1>
+<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 resultlist">
+	<table class="table table-hover table-condensed">
+		<thead>
+			<th>Topic Title</th>
+	        <th>Iopic Details</th>
+	        <th>Topic Result</th>
+		</thead>
+		<tbody>
+			<% if @project.chat.topics.present? %>
+				<% @project.chat.topics.each do |t| %>
+		            <tr>
+		    			<td>
+		    				<%= t.title %>
+		    			</td>
+		    			<td>
+		    				<% if t.information.present? %>
+		    					<%= t.information %>
+		    				<% end %>
+		    			</td>
+		    			<td>
+		    				<% if t.topic_result %>
+								<%= t.topic_result.results %>
+							<% end %>
+		    			</td>
+		    		</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,39 @@
+<% content_for :title, @project.title %>
+<div class="row">
+	<div class="col-md-4">
+		<h1><%= @project.title %></h1>
+		<hr>
+		<h3><%= @project.information %></h3>
+	</div>
+	<div class="col-md-4">
+		<h3>Discussion starts at <%= @project.chat.deadline.to_time.strftime('%A, %d %b %Y %l:%M %p')%> Central European Time</h3>
+		<hr>
+		<h4> ProjectLeader: <%= @project.projectleader.email %></h6>
+		<hr>
+		<h5>Moderator: <%= @project.moderator.email %></h5>
+		<hr>
+		<% if @project.users.include?(current_user) || @project.projectleader == current_user || @project.moderator == current_user %>
+			<%= link_to "Open Chat", project_chat_path(:id => @project.chat.id, :project_id => @project.id) %>
+		<% end %>
+
+	</div>
+	<div class="col-md-4">
+		<h5>Participants: </h5>
+		<% @project.users.each do |u| %>
+		  <%= u.first_name %>
+		  <%= u.last_name %><br>
+		<% end %>	
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 offset-md-1">
+		
+	</div>
+	<div class="col-md-3 offset-md-5">
+		<% if @project.moderator.id == current_user.id %>
+			<%= form_for @project, url: project_complete_path(:project_id => @project.id),method: :patch, remote: true do |f| %>
+	    		<%= f.submit "Finish Project", class: "btn btn-large btn-danger", disable_with: "Project Closed"  %>
+			<% end %>
+		<% end %>
+	</div>
+</div>          

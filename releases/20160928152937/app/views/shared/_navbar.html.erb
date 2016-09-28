@@ -1,0 +1,52 @@
+<nav class="navbar bg-inverse">
+	<div class="navbar-brand">
+      <%= link_to root_path do %>
+          <i class="fa fa fa-home" aria-hidden="true"> Home</i>
+      <% end %>
+    </div>
+	<ul class="nav navbar-nav">
+      <li class="nav-item">
+        <%= link_to help_path do %>
+          <i class="fa fa-question-circle-o" aria-hidden="true"> Help</i>
+        <% end %>
+      </li>
+      <li class="nav-item"> 
+        <%= link_to contact_path do %>
+          <i class="fa fa-envelope-o" aria-hidden="true"> Contact</i>
+        <% end %>
+      </li>
+
+    <% if user_signed_in? %>
+        <li class="nav-item pull-xs-right">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out" aria-hidden="true"> Logout</i>
+          <% end %>
+        </li>
+        <li class="nav-item pull-xs-right">
+          <%= link_to edit_user_registration_path do %>
+          <i class="fa fa-user" aria-hidden="true">
+            <%= current_user.first_name %>
+            <%= current_user.last_name %>
+          </i>
+        <% end %>
+        </li>
+    <% else %>
+        <li class="nav-item pull-xs-right">
+          <%= link_to new_user_session_path do %>
+            <i class="fa fa-sign-in" aria-hidden="true"> Login</i>
+          <% end %>
+        </li>
+        <li class="nav-item pull-xs-right">
+          <%= link_to new_user_registration_path do %>
+            <i class="fa fa-user-plus" aria-hidden="true"> Register</i>
+          <% end  %>
+        </li>
+    <% end %>
+  </ul>
+</nav>
+
+
+
+
+
+

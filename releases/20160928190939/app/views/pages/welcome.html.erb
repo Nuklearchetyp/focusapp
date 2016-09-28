@@ -1,0 +1,26 @@
+<% content_for :title, "Welcome" %>
+<div class="center-block">
+  <h1>Welcome!</h1>
+  <h4>Login or <%= link_to  "Register" , new_user_registration_path %> to get started.</h4>
+  <div class="accountformcontainer">
+    <h1>Log In</h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), :validate => true) do |f| %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, :placeholder => "Email Adress" %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off", :placeholder => "Password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field rememberme">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+      <div class="actions">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+  </div>
+</div>

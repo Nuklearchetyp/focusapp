@@ -1,0 +1,9 @@
+#ENVIRONMENT VARIABLES
+
+#Mailer Credentials
+MAILER_ADRESS: "focusgroupmailer@gmail.com"
+MAILER_PASSWORD: "FocusGroup2112!"
+
+#Adress + port
+WEBSITE_IP: "localhost"
+WEBSITE_PORT: "3000"
