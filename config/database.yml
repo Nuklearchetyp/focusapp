@@ -11,7 +11,7 @@ default: &default
   username: focusadmin
   password: focusgroupadmin
   host: localhost
-  socket: MySQL
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -31,3 +31,4 @@ production:
   username: focusadmin
   password: focusgroupadmin
   host: localhost
+  socket: /var/run/mysqld/mysqld.sock
