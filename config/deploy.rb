@@ -12,6 +12,18 @@ set :deploy_to, '/home/deploy/focusapp'
 
 set :passenger_restart_with_touch, true
 
+
+desc 'Runs rake db:seed'
+task :seed => [:set_rails_env] do
+  on primary fetch(:migration_role) do
+    within release_path do
+      with rails_env: fetch(:rails_env) do
+        execute :rake, "db:seed"
+      end
+    end
+  end
+end
+
 #Tell cap your own private keys for git and use agent forwarding with this command.
 #ssh_options[:forward_agent] = true
 
