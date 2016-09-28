@@ -26,8 +26,8 @@ test:
 
 production:
   adapter: mysql2
-  username: root
-  password: Slaanesh88!
+  username: focusadmin
+  password: focusgroupadmin
   host: localhost
   database: focusapp
   socket: /var/run/mysqld/mysqld.sock
